@@ -1,9 +1,21 @@
 public class Radio {
     private int currentStation;
     private int currentVolume;
+    private int maxStation;
+    private int maxVolume = 100;
+    private int minVolume = 0;
+
+    public Radio() {
+        this.maxStation = 9;
+
+    }
+
+    public Radio(int stationsCount) {
+        this.maxStation = stationsCount - 1;
+    }
 
     public void next() {
-        if (currentStation != 9) {
+        if (currentStation != maxStation) {
             currentStation++;
         } else {
             currentStation = 0;
@@ -14,7 +26,7 @@ public class Radio {
         if (currentStation != 0) {
             currentStation--;
         } else {
-            currentStation = 9;
+            currentStation = maxStation;
         }
     }
 
@@ -27,7 +39,7 @@ public class Radio {
         if (currentStation < 0) {
             return;
         }
-        if (currentStation > 9) {
+        if (currentStation > maxStation) {
             return;
         }
 
@@ -39,10 +51,10 @@ public class Radio {
     }
 
     public void setCurrentVolume(int currentVolume) {
-        if (currentVolume < 0) {
+        if (currentVolume < minVolume) {
             return;
         }
-        if (currentVolume > 100) {
+        if (currentVolume > maxVolume) {
             return;
         }
 
@@ -51,19 +63,19 @@ public class Radio {
 
 
     public void more() {
-        if (currentVolume != 100) {
+        if (currentVolume != maxVolume) {
             currentVolume++;
         } else {
-            currentVolume = 100;
+            currentVolume = maxVolume;
         }
     }
 
 
     public void less() {
-        if (currentVolume != 0) {
+        if (currentVolume != minVolume) {
             currentVolume--;
         } else {
-            currentVolume = 0;
+            currentVolume = minVolume;
         }
     }
 }

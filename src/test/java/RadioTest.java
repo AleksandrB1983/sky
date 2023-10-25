@@ -149,4 +149,65 @@ public class RadioTest {
 
     }
 
+    @Test
+    public void maximumRadioStation() {
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(9);
+
+        int expected = 9;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void checkingTheButtonNext() {
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(9);
+        radio.next();
+
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void checkingTheButtonPrev() {
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(0);
+        radio.prev();
+
+        int expected = 9;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void increaseVolumeInLimitValue() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(99);
+        radio.more();
+        radio.more();
+
+        int expected = 100;
+        int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void volumeReductionInLimitValue() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(1);
+        radio.less();
+        radio.less();
+
+        int expected = 0;
+        int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
 }
